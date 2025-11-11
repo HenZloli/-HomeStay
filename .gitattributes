@@ -1,0 +1,45 @@
+# =============================
+# Unity Text Files (LF)
+# =============================
+# Scripts
+*.cs      text eol=lf
+
+# Meta files
+*.meta    text eol=lf
+
+# Scene files
+*.unity   text eol=lf
+
+# Prefabs, Materials, Shader, etc.
+*.prefab  text eol=lf
+*.mat     text eol=lf
+*.shader  text eol=lf
+*.anim    text eol=lf
+*.controller text eol=lf
+*.overrideController text eol=lf
+
+# JSON / YAML
+*.json    text eol=lf
+*.asmdef  text eol=lf
+*.txt     text eol=lf
+
+# =============================
+# Binary Files (keep as is)
+# =============================
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.tga     binary
+*.psd     binary
+*.fbx     binary
+*.mp3     binary
+*.wav     binary
+*.ogg     binary
+*.mp4     binary
+*.mov     binary
+*.asset   binary
+*.dll     binary
+*.ico     binary
+*.zip     binary
+*.rar     binary
+*.7z      binary
