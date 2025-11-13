@@ -47,12 +47,5 @@ public class cua_phong : Interactable
 
         isRotating = false;
         isOppened = opening;
-
-        // Nếu là mở cửa, tự động đóng sau delay
-        if (opening)
-        {
-            yield return new WaitForSeconds(autoCloseDelay);
-            StartCoroutine(RotateDoor(-88f, openDuration, false));
-        }
     }
 }
