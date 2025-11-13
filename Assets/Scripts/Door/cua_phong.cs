@@ -9,6 +9,8 @@ public class cua_phong : Interactable
     [Header("Door")]
     [SerializeField] private Transform doorTransform; // assign cái cửa cần xoay
     [SerializeField] private BoxCollider doorCollider; // collider của cửa
+    [SerializeField] private float DoorClose = -88f;
+    [SerializeField] private float DoorOpen = 88f;
 
     private bool isOppened = false;
     private bool isRotating = false;
@@ -18,11 +20,11 @@ public class cua_phong : Interactable
         if (isRotating) return;
         if (!isOppened)
         {
-            StartCoroutine(RotateDoor(88f, openDuration, true)); 
+            StartCoroutine(RotateDoor(DoorOpen, openDuration, true)); 
         }
         else
         {
-            StartCoroutine(RotateDoor(-88f, openDuration, false)); 
+            StartCoroutine(RotateDoor(DoorClose, openDuration, false)); 
         }
     }
 
