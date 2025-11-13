@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerSound : MonoBehaviour
@@ -35,12 +35,13 @@ public class PlayerSound : MonoBehaviour
 
     void Update()
     {
-        Vector3 horizontalVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        isMoving = horizontalVel.magnitude > 0.2f;
+        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+        isMoving = input.magnitude > 0.1f; 
         isRunning = Input.GetKey(KeyCode.LeftShift);
 
         HandleFootsteps();
         HandleBreathing();
+        Debug.Log("Player is moving: " + isMoving + ", is running: " + isRunning);
     }
 
     void HandleFootsteps()
@@ -54,6 +55,7 @@ public class PlayerSound : MonoBehaviour
                 AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
                 footstepSource.pitch = footstepPitch + Random.Range(-0.1f, 0.1f);
                 footstepSource.PlayOneShot(clip, footstepVolume);
+                Debug.Log("Played footstep sound: " + clip.name);
             }
 
             float interval = isRunning ? stepInterval * 0.7f : stepInterval;
@@ -65,8 +67,8 @@ public class PlayerSound : MonoBehaviour
     {
         if (breathingClip == null) return;
 
-        Vector3 horizontalVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        bool isMoving = horizontalVel.magnitude > 0.2f;
+        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+        bool isMoving = input.magnitude > 0.1f;
 
         if (isRunning && isMoving)
         {
@@ -76,6 +78,7 @@ public class PlayerSound : MonoBehaviour
                 breathingSource.volume = breathingVolume;
                 breathingSource.loop = true;
                 breathingSource.Play();
+                Debug.Log("Started playing breathing sound.");
             }
         }
         else if (breathingSource.isPlaying)
