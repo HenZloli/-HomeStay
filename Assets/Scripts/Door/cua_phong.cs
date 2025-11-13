@@ -13,19 +13,16 @@ public class cua_phong : Interactable
     private bool isOppened = false;
     private bool isRotating = false;
     
-
     public override void OnInteract()
     {
         if (isRotating) return;
         if (!isOppened)
         {
-            StartCoroutine(RotateDoor(88f, openDuration, true)); // mở cửa
-            Debug.Log("Door opened");
+            StartCoroutine(RotateDoor(88f, openDuration, true)); 
         }
         else
         {
-            StartCoroutine(RotateDoor(-88f, openDuration, false)); // đóng cửa
-            Debug.Log("Door closed");
+            StartCoroutine(RotateDoor(-88f, openDuration, false)); 
         }
     }
 
@@ -52,8 +49,7 @@ public class cua_phong : Interactable
             doorCollider.isTrigger = true; // bật collider khi cửa đã mở
         else 
             doorCollider.isTrigger = false; // giữ tắt collider khi cửa đóng
-
-
+        
 
         isRotating = false;
         isOppened = opening;
