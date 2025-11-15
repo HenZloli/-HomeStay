@@ -58,7 +58,7 @@ public class PlayerInteraction_Debug : MonoBehaviour
             if (interactUI != null)
             {
                 interactUI.SetActive(true);
-                interactText.text = $"[E] Tương tác với {found.interactName}";
+                interactText.text = $"[E] >>  {found.interactName}";
             }
         }
         else
