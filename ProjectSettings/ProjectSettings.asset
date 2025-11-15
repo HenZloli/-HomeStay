@@ -920,11 +920,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: d48b183f-e413-45f1-a83d-70e89221d070
+  cloudProjectId: 7e8cee0f-78c2-4f44-bce0-1f4c5333beee
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: HomeStay
-  organizationId: hhuy5349
+  organizationId: buixuantrong9306
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
