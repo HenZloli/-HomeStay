@@ -5,32 +5,34 @@ public class cua_phong : Interactable
 {
     [Header("Effects")]
     [SerializeField] private float openDuration = 1f; // thời gian mở cửa
-    [SerializeField] private float autoCloseDelay = 3f; // sau bao lâu cửa tự đóng
 
     [Header("Door")]
     [SerializeField] private Transform doorTransform; // assign cái cửa cần xoay
+    [SerializeField] private BoxCollider doorCollider; // collider của cửa
+    [SerializeField] private float DoorClose = -88f;
+    [SerializeField] private float DoorOpen = 88f;
 
     private bool isOppened = false;
     private bool isRotating = false;
     
-
     public override void OnInteract()
     {
         if (isRotating) return;
-
         if (!isOppened)
         {
-            StartCoroutine(RotateDoor(88f, openDuration, true)); // mở cửa
+            StartCoroutine(RotateDoor(DoorOpen, openDuration, true)); 
         }
         else
         {
-            StartCoroutine(RotateDoor(-88f, openDuration, false)); // đóng cửa
+            StartCoroutine(RotateDoor(DoorClose, openDuration, false)); 
         }
     }
 
     private IEnumerator RotateDoor(float angle, float duration, bool opening)
     {
         isRotating = true;
+
+        doorCollider.isTrigger = true; // bật collider khi cửa đang xoay
 
         float rotated = 0f;
         float speed = Mathf.Abs(angle) / duration;
@@ -45,14 +47,13 @@ public class cua_phong : Interactable
             yield return null;
         }
 
+        if(opening)
+            doorCollider.isTrigger = true; // bật collider khi cửa đã mở
+        else 
+            doorCollider.isTrigger = false; // giữ tắt collider khi cửa đóng
+        
+
         isRotating = false;
         isOppened = opening;
-
-        // Nếu là mở cửa, tự động đóng sau delay
-        if (opening)
-        {
-            yield return new WaitForSeconds(autoCloseDelay);
-            StartCoroutine(RotateDoor(-88f, openDuration, false));
-        }
     }
 }
